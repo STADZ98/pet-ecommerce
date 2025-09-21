@@ -1,0 +1,259 @@
+/* โหลดฟอนต์ */
+@import './fonts-th-sarabun.css';
+
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Font */
+body {
+    font-family: 'TH Sarabun New', 'THSarabunNew', 'Sarabun', Arial, sans-serif !important;
+}
+
+*,
+::before,
+::after {
+    font-family: 'TH Sarabun New', 'THSarabunNew', 'Sarabun', Arial, sans-serif !important;
+}
+
+/* Line clamp */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Swiper styles */
+.custom-swiper-container {
+    background: #fff;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08), 0 1.5px 6px 0 rgba(0, 0, 0, 0.04);
+}
+
+.custom-swiper-container .swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.custom-swiper-container .swiper-slide:hover {
+    box-shadow: 0 2px 12px 0 rgba(223, 23, 23, 0.1);
+}
+
+.custom-swiper-container .swiper-button-next,
+.custom-swiper-container .swiper-button-prev {
+   
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.custom-swiper-container .swiper-button-next:after,
+.custom-swiper-container .swiper-button-prev:after {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ff9800;
+    text-shadow: 0 2px 8px rgba(37,99,235,0.15);
+    transition: color 0.2s, text-shadow 0.2s, transform 0.2s;
+}
+
+.custom-swiper-container .swiper-button-next:after {
+    content: '>';
+}
+.custom-swiper-container .swiper-button-prev:after {
+    content: '<';
+}
+
+.custom-swiper-container .swiper-button-next:hover:after,
+.custom-swiper-container .swiper-button-prev:hover:after {
+    
+    background: #fdd835;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px 0 rgba(37,99,235,0.18);
+    transform: scale(1.15);
+    padding: 0.2em 0.4em;
+}
+
+.custom-swiper-container .swiper-pagination-bullet {
+    background: #cbd5e1;
+    opacity: 1;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: 0 0.25rem !important;
+    transition: background 0.2s;
+}
+
+.custom-swiper-container .swiper-pagination-bullet-active {
+    background: #ff9800;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-up-modal {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.animate-fade-in-up.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animate-fade-in-up-modal {
+    animation: fade-in-up-modal 0.3s ease-out forwards;
+}
+
+/* Responsive helpers */
+.img-responsive,
+img,
+.product-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Make sure html/body use full width and predictable box-sizing */
+html, body {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Utility container used throughout: fluid max-width with comfortable padding */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* A small helper to force elements to scale down on very narrow screens
+   Use sparingly; it helps with inline styles that set fixed widths. */
+.force-responsive {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Ensure form controls are comfortable on mobile */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea,
+.btn {
+    min-height: 44px; /* recommended touch size */
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+}
+
+/* Utility to collapse long text on mobile */
+.mobile-hide {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .mobile-hide {
+        display: initial;
+    }
+}
+
+/* Make card grids stack nicely on small screens */
+.grid-stack-mobile {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .grid-stack-mobile {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-stack-mobile {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Reduce large content gutters on very small screens */
+@media (max-width: 420px) {
+    main, .container, .mx-auto {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Safe area helper for devices with notches (iPhone, some Android) */
+.safe-area-padding {
+    padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+    padding-left: env(safe-area-inset-left, 0.5rem);
+    padding-right: env(safe-area-inset-right, 0.5rem);
+}
+
+/* Mobile sticky action: slightly elevated card with safe-area aware bottom spacing */
+.mobile-sticky-action {
+    position: fixed;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom, 0.5rem));
+    z-index: 60;
+    display: flex;
+    gap: 0.5rem;
+    background: transparent;
+}
+
+.mobile-sticky-action .sticky-inner {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.96);
+    padding: 0.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    align-items: center;
+}
+
+/* Small typography adjustments for product detail on tiny screens */
+.product-title {
+    font-size: 1.125rem; /* 18px */
+}
+
+.product-price {
+    font-size: 1.25rem; /* 20px */
+}
+
+@media (min-width: 640px) {
+    .product-title { font-size: 1.5rem; }
+    .product-price { font-size: 1.75rem; }
+}

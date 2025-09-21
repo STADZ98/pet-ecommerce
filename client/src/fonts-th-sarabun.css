@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'TH Sarabun New';
+  /* Prefer the Google-hosted Sarabun. If you want to use a local font file,
+      place a valid .woff2/.woff/.ttf in `public/fonts/` and update the src
+      with proper formats (woff2 preferred). The local TTF was causing
+      OTS parsing errors in your dev server, so it's removed here. */
+  src: local('TH Sarabun New');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, html, #root {
+  font-family: 'TH Sarabun New', 'Sarabun', Arial, sans-serif;
+}
