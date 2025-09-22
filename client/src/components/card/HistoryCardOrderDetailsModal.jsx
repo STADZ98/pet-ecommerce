@@ -371,11 +371,12 @@ const OrderDetailsModal = ({
                             <Copy size={16} />
                           </button>
                           <a
-                            href={trackingCodeDisplay
-                              ? `https://track.thailandpost.co.th/?trackNumber=${encodeURIComponent(
-                                  trackingCodeDisplay
-                                )}`
-                              : "#"
+                            href={
+                              localTracking
+                                ? `/track?tracking=${encodeURIComponent(
+                                    localTracking
+                                  )}`
+                                : "/track"
                             }
                             target="_blank"
                             rel="noreferrer"

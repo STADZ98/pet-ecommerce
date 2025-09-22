@@ -436,10 +436,10 @@ const HistoryCard = () => {
   useEffect(() => {
     const rem = recomputeReviewReminders();
     if (rem && rem.length > 0) {
-      toast.info(
-        `คุณมี ${rem.length} คำสั่งซื้อที่จัดส่งสำเร็จและยังไม่ได้รีวิว`,
-        { autoClose: 5000 }
-      );
+      // toast.info(
+      //   `คุณมี ${rem.length} คำสั่งซื้อที่จัดส่งสำเร็จและยังไม่ได้รีวิว`,
+      //   { autoClose: 5000 }
+      // );
       if (typeof window !== "undefined" && "Notification" in window) {
         if (Notification.permission === "granted") {
           new Notification("เตือนรีวิวสินค้า", {

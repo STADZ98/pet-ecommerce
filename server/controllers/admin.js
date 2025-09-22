@@ -1,7 +1,16 @@
 const prisma = require("../config/prisma");
-const stripe = require("stripe")(
-  process.env.STRIPE_SECRET || process.env.STRIPE_KEY
-);
+const Stripe = require("stripe");
+
+function getStripe() {
+  const key = process.env.STRIPE_SECRET || process.env.STRIPE_KEY;
+  if (!key) return null;
+  try {
+    return Stripe(key);
+  } catch (e) {
+    console.error("Failed to initialize Stripe:", e && e.message ? e.message : e);
+    return null;
+  }
+}
 const bcrypt = require("bcryptjs");
 
 // แผนที่ภาษาไทย ↔ ENUM

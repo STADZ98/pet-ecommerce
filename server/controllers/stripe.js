@@ -1,11 +1,22 @@
 const prisma = require("../config/prisma");
-const stripe = require("stripe")(
-  process.env.STRIPE_SECRET || process.env.STRIPE_KEY
-);
+const Stripe = require("stripe");
+
+function getStripe() {
+  const key = process.env.STRIPE_SECRET || process.env.STRIPE_KEY;
+  if (!key) return null;
+  try {
+    return Stripe(key);
+  } catch (e) {
+    console.error("Failed to initialize Stripe:", e && e.message ? e.message : e);
+    return null;
+  }
+}
 
 exports.payment = async (req, res) => {
   try {
     //code
+    const stripe = getStripe();
+    if (!stripe) return res.status(503).json({ message: "Stripe not configured" });
     console.log("test", req.user.id);
     const cart = await prisma.cart.findFirst({
       where: {

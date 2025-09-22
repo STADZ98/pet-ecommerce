@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const STATUS_MAP_TH = {
   pending: "รอดำเนินการ",
@@ -35,7 +36,16 @@ function fmtMoney(n) {
 }
 
 export default function TrackLookup({ apiBase = "/api" }) {
-  const [tracking, setTracking] = useState("");
+  const location = useLocation();
+  const initialTrackingFromQuery = useMemo(() => {
+    try {
+      return new URLSearchParams(location.search).get("tracking") || "";
+    } catch {
+      return "";
+    }
+  }, [location.search]);
+
+  const [tracking, setTracking] = useState(initialTrackingFromQuery);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
@@ -62,6 +72,14 @@ export default function TrackLookup({ apiBase = "/api" }) {
       setLoading(false);
     }
   }
+
+  // Auto-run lookup when a tracking code is provided via query param
+  useEffect(() => {
+    if (initialTrackingFromQuery) {
+      doLookup();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialTrackingFromQuery]);
 
   function clearAll() {
     setTracking("");

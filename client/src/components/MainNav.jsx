@@ -265,7 +265,7 @@ const MainNav = () => {
                   "บทความ",
                   "เกี่ยวกับ",
                   "ติดต่อเรา",
-                  "ตรวจสอบพัสดุ",
+                  
                 ].map((label, idx) => {
                   const paths = [
                     "/",
@@ -273,7 +273,7 @@ const MainNav = () => {
                     "/articles",
                     "/about",
                     "/contact",
-                    "/track",
+                    
                   ];
                   return (
                     <NavLink
